@@ -77,7 +77,7 @@ public class DisplayActivity extends AppCompatActivity {
 
     private void UpdatingData(String uname,String uage) {
         boolean flag = false;
-        flag= handler.updateData(uage,uname);
+        flag= handler.updateData(uage,uname);//true
         if(flag){
             User user = new User();
             Toast.makeText(DisplayActivity.this,"Successful",Toast.LENGTH_SHORT).show();
@@ -106,7 +106,7 @@ public class DisplayActivity extends AppCompatActivity {
     }
 
     private void getDataView() {
-        userList.clear();        //name//0,age//1,dob//2
+      //  userList.clear();        //name//0,age//1,dob//2
         Cursor data = handler.getData();
         while (data.moveToNext()){
             String Sname = data.getString(0);
