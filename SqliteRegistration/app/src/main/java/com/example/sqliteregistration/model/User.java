@@ -5,13 +5,18 @@ public class User {
     private String age;
     private String dob;
 
-    public User(String name, String age, String dob) {
+    public User() {
+    }
+
+    public User(String name, String dob,String age) {
         this.name = name;
         this.age = age;
         this.dob = dob;
     }
 
-    public User() {
+    public User(String name, String dob) {
+        this.name = name;
+        this.dob = dob;
     }
 
     public String getName() {

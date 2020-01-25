@@ -37,7 +37,9 @@ int seY;
                   return;
                 }
                 else {
-                    user = new User(name.getText().toString(), dob.getText().toString(), age.getText().toString());                //user = new User(newEntryImg);
+                    user = new User(name.getText().toString(), dob.getText().toString(), age.getText().toString());
+                    //Mg Mg // 2019 //1
+                    //user = new User(newEntryImg);
                     dbhandler.addData(user);
                     Toast.makeText(getApplicationContext(), "File database created!", Toast.LENGTH_SHORT).show();
                 }
