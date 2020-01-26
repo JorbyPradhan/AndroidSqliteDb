@@ -69,10 +69,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_EMAIL,user.getEmail());
         values.put(KEY_PHONE,user.getPhone());
         db.insert(TABLE_NAME1,null, values);
-        //
-        /*String query = " Insert into " + TABLE_NAME1 + " Values ( '" + user.getName() + "' , '" + user.getPass() + "' , " +
-                "'" + user.getEmail() + "' + '" + user.getPhone() + "' ";
-        db.r(query);*/
         db.close();
         return true;
     }
@@ -86,7 +82,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //select
 
     public Cursor getData(){
-        SQLiteDatabase db = this.getWritableDatabase();//main
+        SQLiteDatabase db = this.getWritableDatabase();
         String query = " Select * from " + TABLE_NAME;
         Cursor data = db.rawQuery(query,null);
         return data;

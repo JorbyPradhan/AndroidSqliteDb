@@ -1,9 +1,12 @@
 package com.example.sqliteregistration;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +25,7 @@ public class DisplayActivity extends AppCompatActivity {
     private DatabaseHandler handler;
     private List<User> userList;
     private EditText edtName,edtAge;
-    private Button editBtn,updateBtn,DeleteBtn;
+    private Button updateBtn,DeleteBtn;
 
 
     @Override
@@ -32,7 +35,7 @@ public class DisplayActivity extends AppCompatActivity {
         name = findViewById(R.id.txt_name);
         age = findViewById(R.id.txt_age_view);
         dob = findViewById(R.id.txt_dob_view);
-        editBtn = findViewById(R.id.btn_edt);
+       // editBtn = findViewById(R.id.btn_edt);
         edtName = findViewById(R.id.edt_delete_name);
         edtAge = findViewById(R.id.edt_delete_age);
         updateBtn = findViewById(R.id.btn_update);
@@ -46,15 +49,6 @@ public class DisplayActivity extends AppCompatActivity {
             age.append(u.getAge()+ ",");
             dob.append(u.getDob()+ ", ");
         }
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edtName.setVisibility(View.VISIBLE);
-                edtAge.setVisibility(View.VISIBLE);
-                updateBtn.setVisibility(View.VISIBLE);
-                DeleteBtn.setVisibility(View.VISIBLE);
-            }
-        });
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -104,7 +98,27 @@ public class DisplayActivity extends AppCompatActivity {
        }
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.delete:
+                edtName.setVisibility(View.VISIBLE);
+                DeleteBtn.setVisibility(View.VISIBLE);
+                break;
+            case R.id.update:
+                edtName.setVisibility(View.VISIBLE);
+                edtAge.setVisibility(View.VISIBLE);
+                updateBtn.setVisibility(View.VISIBLE);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void getDataView() {
       //  userList.clear();        //name//0,age//1,dob//2
         Cursor data = handler.getData();
