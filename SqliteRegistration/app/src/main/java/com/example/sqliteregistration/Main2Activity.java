@@ -13,11 +13,15 @@ import com.example.sqliteregistration.Database.DatabaseHandler;
 import com.example.sqliteregistration.model.User;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main2Activity extends AppCompatActivity {
 private Button Add;
 private TextView Display;
 private DatabaseHandler handler;
 private TextInputEditText name,password;
+List<User> listdata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +29,11 @@ private TextInputEditText name,password;
         Add = findViewById(R.id.btn_add);
         name = findViewById(R.id.login_name);
         password = findViewById(R.id.edt_Pass);
+        listdata = new ArrayList<>();
         handler = new DatabaseHandler(this);
         Display = findViewById(R.id.btn_view);
+        populateView();
+        img.setImageBitmap(listdata.get(0).getByet());
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,5 +59,12 @@ private TextInputEditText name,password;
                 startActivity(intent);
             }
         });
+    }
+    private void populateView() {
+        Cursor data = handler.getDataone();
+        if (data.moveToFirst()){
+            byte[] img = data.getBlob(0);
+            listdata.add(new User(img));
+        }
     }
 }

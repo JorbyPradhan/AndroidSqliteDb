@@ -37,7 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String Create_Login_Table = " CREATE TABLE " + TABLE_NAME1 + " ( " + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-        + KEY_NAME + " TEXT, " + KEY_PASSWORD + " TEXT, " + KEY_EMAIL + " TEXT, " + KEY_PHONE + " INTEGER NOT NULL " + " ) ";
+        + KEY_NAME + " TEXT, " + KEY_PASSWORD + " TEXT, " + KEY_EMAIL + " TEXT, " + KEY_PHONE + " TEXT " + " ) ";
         String CREATE_CONTACTS_TABLE = " CREATE TABLE " + TABLE_NAME + " ( "
                 + KEY_NAME + " TEXT, "  + KEY_AGE + " TEXT, " + KEY_DATE + " DATE " + " ) ";
         db.execSQL(CREATE_CONTACTS_TABLE);
@@ -87,7 +87,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query,null);
         return data;
     }
-
+    public Cursor getDataone(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " Select img from " + TABLE_NAME1;
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
     public User getAllContact(String name1){
         Log.i("NAME", name1);
         User contact = new User();

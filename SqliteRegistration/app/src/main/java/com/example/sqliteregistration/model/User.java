@@ -6,7 +6,7 @@ public class User {
     private String dob;
     private String pass;
     private String email;
-    private int phone;
+    private String phone;
 
     public User() {
     }
@@ -16,18 +16,18 @@ public class User {
         this.dob = dob;
     }
 
-    public User(String name, String pass, String email, int phone) {
+    public User(String name, String pass, String email, String phone) {
         this.name = name;
         this.pass = pass;
         this.email = email;
         this.phone = phone;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

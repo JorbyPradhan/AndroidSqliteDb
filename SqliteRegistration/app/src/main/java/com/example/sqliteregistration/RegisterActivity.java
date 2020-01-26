@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class RegisterActivity extends AppCompatActivity {
 private TextInputEditText name,password,confirmPassword,email,phone;
 private Button Register;
+int number;
 private DatabaseHandler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +52,15 @@ private DatabaseHandler handler;
             return;
         }
         if(password.getText().toString().trim().equals(confirmPassword.getText().toString().trim())){
+
             boolean flag = false;
+           /* number = Integer.parseInt(phone.getText().toString());*/
             User user = new User(name.getText().toString(),password.getText().toString(),
-                    email.getText().toString(),Integer.parseInt(phone.getText().toString().trim()));
+                    email.getText().toString(),phone.getText().toString());
             flag =handler.RegisterData(user);
             if(flag == true){
                 Toast.makeText(this,"Account Create Successful",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(this,Main2Activity.class));
+                startActivity(new Intent(RegisterActivity.this,Main2Activity.class));
                 finish();
             }
             else {
@@ -76,7 +79,7 @@ private DatabaseHandler handler;
         password = findViewById(R.id.reg_edt_Pass);
         email = findViewById(R.id.reg_edt_mail);
         confirmPassword = findViewById(R.id.confirm_Pass);
-        phone = findViewById(R.id.reg_phone);
+        phone = findViewById(R.id.reg__edt_phone);
         Register = findViewById(R.id.btn_register);
 
     }

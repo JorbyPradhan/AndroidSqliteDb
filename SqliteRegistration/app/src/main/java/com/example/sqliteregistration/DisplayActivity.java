@@ -108,10 +108,12 @@ public class DisplayActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.delete:
+
                 edtName.setVisibility(View.VISIBLE);
                 DeleteBtn.setVisibility(View.VISIBLE);
                 break;
             case R.id.update:
+                DeleteBtn.setVisibility(View.GONE);
                 edtName.setVisibility(View.VISIBLE);
                 edtAge.setVisibility(View.VISIBLE);
                 updateBtn.setVisibility(View.VISIBLE);
